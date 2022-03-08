@@ -1,0 +1,16 @@
+<!-- Displaying movie list macro  -->
+{% macro displayPitchList(movie_list) %}
+
+    {% for pitch in pitch_list %}
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 pitch-card">
+            <img src="{{ pictch.poster }}" alt="{{ pitch.title }} poster" class="img-responsive">
+            <li class="text-center">
+                <a href="/pitch/{{pitch.id}}">
+                    {{ movie.title|truncate(10)}}</a>
+            </li>
+        </div>
+
+    {% endfor %}
+
+{% endmacro %}
+
