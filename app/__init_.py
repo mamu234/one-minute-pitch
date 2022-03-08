@@ -21,6 +21,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
 
+    
 
     # Registering the blueprint
     from app import main as main_blueprint
@@ -31,6 +32,8 @@ def create_app(config_name):
     configure_request(app)
 
 
-
+    def create_app(config_name):
+     from .auth import auth as auth_blueprint
+     app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
 
     return app
