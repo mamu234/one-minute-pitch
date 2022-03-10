@@ -1,16 +1,34 @@
-<!-- Displaying movie list macro  -->
-{% macro displayPitchList(movie_list) %}
-
-    {% for pitch in pitch_list %}
-        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 pitch-card">
-            <img src="{{ pictch.poster }}" alt="{{ pitch.title }} poster" class="img-responsive">
-            <li class="text-center">
-                <a href="/pitch/{{pitch.id}}">
-                    {{ movie.title|truncate(10)}}</a>
-            </li>
-        </div>
-
-    {% endfor %}
-
-{% endmacro %}
+{% macro display(piches) %}
+<div class="container-fluid">
+		<div class="row">
+				{% if piches %}
+					{% for category in piches %}
+					<div class="col-md-4" >
+						<div class="thumbnail" id="carded">
+							<h5 class="card-header">{{category.title}}</h5>
+							<div class="card-body">
+									<p>{{category.post}}</p>
+									<p class="text-center"> Category: {{category.category}}</p>
+									<footer class="blockquote-footer text-center" > Posted by: {{category.user.username}}</footer>
+								<div><span class="foot" >{{category.comment.count()}} Comments</span> 
+									<span class="foot" > <a href="{{url_for('main.like',id = category.id)}}"><i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i></a> {{category.upvote.count()}}</span>
+									
+									
+									<span class="foot"> <a href="{{url_for('main.dislike',id = category.id)}}"> <i class="fa fa-thumbs-down" style="color:red;"></i> {{category.downvote.count()}}</a></span></div>
+			
+								<a href="{{url_for('main.comment',pitch_id = category.id)}}" class="btn btn-info btn-sm"> Comment</a>
+							</div>
+						</div>
+					</div>
+					
+					{% endfor %}
+				{% else %}
+				<div class="card w-90 mb-3">
+					<div class="card-body">
+				
+						<p class="card-title">Category Has 0 posts</p>
+					</div>
+				</div>
+				{% endif %}
+			</div>
 
