@@ -1,0 +1,4 @@
+Hello {{user.username}}
+Welcome to Pitches
+We have just seen you have signed up to Pitchers  welcome 
+enjoy viewing pitches.
